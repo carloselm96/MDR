@@ -1,0 +1,2249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="microna_2019Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="academias">
+          <Key>
+            <PropertyRef Name="ACADEMIA_ID" />
+          </Key>
+          <Property Name="ACADEMIA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="article_academias">
+          <Key>
+            <PropertyRef Name="ARTICLE_ACADEMIAS_ID" />
+          </Key>
+          <Property Name="ARTICLE_ACADEMIAS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ARTICLE_FK" Type="int" />
+          <Property Name="ACADEMIA_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="article_authors">
+          <Key>
+            <PropertyRef Name="ARTICLE_AUTHORS_ID" />
+          </Key>
+          <Property Name="ARTICLE_AUTHORS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ARTICLE_FK" Type="int" />
+          <Property Name="AUTHOR_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="article_types">
+          <Key>
+            <PropertyRef Name="ARTICLE_TYPE_ID" />
+          </Key>
+          <Property Name="ARTICLE_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="articles">
+          <Key>
+            <PropertyRef Name="ARTICLE_ID" />
+          </Key>
+          <Property Name="ARTICLE_ID" Type="int" Nullable="false" />
+          <Property Name="TITLE" Type="longtext" />
+          <Property Name="VOLUME" Type="int" />
+          <Property Name="INIT_PAGE" Type="int" />
+          <Property Name="FINAL_PAGE" Type="int" />
+          <Property Name="MAGAZINE" Type="longtext" />
+          <Property Name="ISSN" Type="varchar" MaxLength="45" />
+          <Property Name="DATE" Type="datetime" Precision="0" />
+          <Property Name="USER_FK" Type="int" />
+          <Property Name="FILE_FK" Type="int" />
+          <Property Name="ARTICLE_TYPE_FK" Type="int" />
+          <Property Name="DATABASE" Type="varchar" MaxLength="45" />
+          <Property Name="DOI" Type="varchar" MaxLength="45" />
+          <Property Name="APPROVAL_DATE" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="authors">
+          <Key>
+            <PropertyRef Name="AUTHOR_ID" />
+          </Key>
+          <Property Name="AUTHOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="book_academias">
+          <Key>
+            <PropertyRef Name="BOOK_ACADEMIA_ID" />
+          </Key>
+          <Property Name="BOOK_ACADEMIA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BOOK_FK" Type="int" />
+          <Property Name="ACADEMIA_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="book_authors">
+          <Key>
+            <PropertyRef Name="BOOK_AUTHOR_ID" />
+          </Key>
+          <Property Name="BOOK_AUTHOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BOOK_FK" Type="int" />
+          <Property Name="AUTHOR_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="book_types">
+          <Key>
+            <PropertyRef Name="BOOK_TYPE_ID" />
+          </Key>
+          <Property Name="BOOK_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="BOOK_ID" />
+          </Key>
+          <Property Name="BOOK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITLE" Type="longtext" />
+          <Property Name="DATE" Type="datetime" Precision="0" />
+          <Property Name="ISBN" Type="varchar" MaxLength="45" />
+          <Property Name="BOOK_TYPE_FK" Type="int" />
+          <Property Name="USER_FK" Type="int" />
+          <Property Name="FILE_FK" Type="int" />
+          <Property Name="EDITORIAL" Type="longtext" />
+          <Property Name="COUNTRY" Type="longtext" />
+        </EntityType>
+        <EntityType Name="files">
+          <Key>
+            <PropertyRef Name="FILE_ID" />
+          </Key>
+          <Property Name="FILE_ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="longtext" />
+          <Property Name="URL" Type="longtext" />
+        </EntityType>
+        <EntityType Name="project_academias">
+          <Key>
+            <PropertyRef Name="PROJECT_ACADEMIA_ID" />
+          </Key>
+          <Property Name="PROJECT_ACADEMIA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROJECT_FK" Type="int" />
+          <Property Name="ACADEMIA_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="project_authors">
+          <Key>
+            <PropertyRef Name="PROJECT_AUTHOR_ID" />
+          </Key>
+          <Property Name="PROJECT_AUTHOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROJECT_FK" Type="int" />
+          <Property Name="AUTHOR_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="projects">
+          <Key>
+            <PropertyRef Name="PROJECT_ID" />
+          </Key>
+          <Property Name="PROJECT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITLE" Type="longtext" />
+          <Property Name="FINANCING" Type="longtext" />
+          <Property Name="START_DATE" Type="datetime" Precision="0" />
+          <Property Name="FINAL_DATE" Type="datetime" Precision="0" />
+          <Property Name="USER_FK" Type="int" />
+          <Property Name="FILE_FK" Type="int" />
+          <Property Name="KEY" Type="varchar" MaxLength="45" />
+          <Property Name="BUDGET" Type="int" />
+        </EntityType>
+        <EntityType Name="recepcional_academias">
+          <Key>
+            <PropertyRef Name="RECEPCIONAL_ACADEMIA_ID" />
+          </Key>
+          <Property Name="RECEPCIONAL_ACADEMIA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RECEPCIONAL_WORK_FK" Type="int" />
+          <Property Name="ACADEMIA_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="receptional_works">
+          <Key>
+            <PropertyRef Name="RECEPTIONAL_WORK_ID" />
+          </Key>
+          <Property Name="RECEPTIONAL_WORK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITLE" Type="varchar" MaxLength="45" />
+          <Property Name="USER_FK" Type="int" />
+          <Property Name="DATE" Type="datetime" Precision="0" />
+          <Property Name="FILE_FK" Type="int" />
+          <Property Name="DIRECTOR" Type="longtext" />
+          <Property Name="ADVISER" Type="longtext" />
+          <Property Name="CODIRECTION" Type="longtext" />
+          <Property Name="AUTHOR_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="scientific_academias">
+          <Key>
+            <PropertyRef Name="SCIENTIFIC_ACADEMIAS_ID" />
+          </Key>
+          <Property Name="SCIENTIFIC_ACADEMIAS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SCIENTIFIC_PRODUCTION_FK" Type="int" />
+          <Property Name="ACADEMIA_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="scientific_authors">
+          <Key>
+            <PropertyRef Name="SCIENTIFIC_AUTHORS_ID" />
+          </Key>
+          <Property Name="SCIENTIFIC_AUTHORS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SCIENTIFIC_PRODUCTION_FK" Type="int" />
+          <Property Name="AUTHOR_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="scientific_production_types">
+          <Key>
+            <PropertyRef Name="SCIENTIFIC_PRODUCTION_TYPE_ID" />
+          </Key>
+          <Property Name="SCIENTIFIC_PRODUCTION_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="scientific_productions">
+          <Key>
+            <PropertyRef Name="SCIENTIFIC_PRODUCTION_ID" />
+          </Key>
+          <Property Name="SCIENTIFIC_PRODUCTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITLE" Type="longtext" />
+          <Property Name="DATE" Type="datetime" Precision="0" />
+          <Property Name="SCIENTIFIC_PRODUCTION_TYPE_FK" Type="int" />
+          <Property Name="ITEM_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="user_types">
+          <Key>
+            <PropertyRef Name="USER_TYPE_ID" />
+          </Key>
+          <Property Name="USER_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="longtext" />
+          <Property Name="USER" Type="longtext" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="45" />
+          <Property Name="EMAIL" Type="longtext" />
+          <Property Name="USER_TYPE_FK" Type="int" />
+          <Property Name="LAST_NAMES" Type="longtext" />
+          <Property Name="STATUS" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="work_academias">
+          <Key>
+            <PropertyRef Name="WORK_ACADEMIAS_ID" />
+          </Key>
+          <Property Name="WORK_ACADEMIAS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WORK_FK" Type="int" />
+          <Property Name="ACADEMIA_FK" Type="int" />
+        </EntityType>
+        <EntityType Name="work_authors">
+          <Key>
+            <PropertyRef Name="idtrabajo_usuario" />
+          </Key>
+          <Property Name="idtrabajo_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTrabajo" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="work_types">
+          <Key>
+            <PropertyRef Name="WORK_TYPE_ID" />
+          </Key>
+          <Property Name="WORK_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="works">
+          <Key>
+            <PropertyRef Name="WORK_ID" />
+          </Key>
+          <Property Name="WORK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITLE" Type="longtext" />
+          <Property Name="DATE" Type="datetime" Precision="0" />
+          <Property Name="WORK_TYPE_FK" Type="int" />
+          <Property Name="AUTHORS" Type="longtext" />
+          <Property Name="PRESENTATION" Type="longtext" />
+          <Property Name="COUNTRY" Type="longtext" />
+          <Property Name="USER_FK" Type="int" />
+          <Property Name="FILE_FK" Type="int" />
+        </EntityType>
+        <Association Name="FK_ARAU_ARTI">
+          <End Role="articles" Type="Self.articles" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="article_authors" Type="Self.article_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="articles">
+              <PropertyRef Name="ARTICLE_ID" />
+            </Principal>
+            <Dependent Role="article_authors">
+              <PropertyRef Name="ARTICLE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARAU_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="article_authors" Type="Self.article_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="article_authors">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTGRU_ART">
+          <End Role="articles" Type="Self.articles" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="article_academias" Type="Self.article_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="articles">
+              <PropertyRef Name="ARTICLE_ID" />
+            </Principal>
+            <Dependent Role="article_academias">
+              <PropertyRef Name="ARTICLE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTGRU_GRUPO">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="article_academias" Type="Self.article_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="article_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTI_ARTY">
+          <End Role="article_types" Type="Self.article_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="articles" Type="Self.articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="article_types">
+              <PropertyRef Name="ARTICLE_TYPE_ID" />
+            </Principal>
+            <Dependent Role="articles">
+              <PropertyRef Name="ARTICLE_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTI_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="articles" Type="Self.articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="articles">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTI_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="articles" Type="Self.articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="articles">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOAC_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="book_academias" Type="Self.book_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="book_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOAC_BOOK">
+          <End Role="books" Type="Self.books" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="book_academias" Type="Self.book_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="BOOK_ID" />
+            </Principal>
+            <Dependent Role="book_academias">
+              <PropertyRef Name="BOOK_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOAU_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="book_authors" Type="Self.book_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="book_authors">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOAU_BOOK">
+          <End Role="books" Type="Self.books" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="book_authors" Type="Self.book_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="BOOK_ID" />
+            </Principal>
+            <Dependent Role="book_authors">
+              <PropertyRef Name="BOOK_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOK_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOK_TYBO">
+          <End Role="book_types" Type="Self.book_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book_types">
+              <PropertyRef Name="BOOK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="BOOK_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOK_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRAC_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_academias" Type="Self.project_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="project_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRAC_PROJ">
+          <End Role="projects" Type="Self.projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_academias" Type="Self.project_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projects">
+              <PropertyRef Name="PROJECT_ID" />
+            </Principal>
+            <Dependent Role="project_academias">
+              <PropertyRef Name="PROJECT_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRAU_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_authors" Type="Self.project_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="project_authors">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRAU_PROJ">
+          <End Role="projects" Type="Self.projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_authors" Type="Self.project_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projects">
+              <PropertyRef Name="PROJECT_ID" />
+            </Principal>
+            <Dependent Role="project_authors">
+              <PropertyRef Name="PROJECT_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJ_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="projects" Type="Self.projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="projects">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJ_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="projects" Type="Self.projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="projects">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REAC_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="recepcional_academias" Type="Self.recepcional_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="recepcional_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REAC_REWO">
+          <End Role="receptional_works" Type="Self.receptional_works" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="recepcional_academias" Type="Self.recepcional_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="receptional_works">
+              <PropertyRef Name="RECEPTIONAL_WORK_ID" />
+            </Principal>
+            <Dependent Role="recepcional_academias">
+              <PropertyRef Name="RECEPCIONAL_WORK_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REWO_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1" />
+          <End Role="receptional_works" Type="Self.receptional_works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="receptional_works">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REWO_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="receptional_works" Type="Self.receptional_works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="receptional_works">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REWO_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="receptional_works" Type="Self.receptional_works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="receptional_works">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCAC_SCPR">
+          <End Role="scientific_productions" Type="Self.scientific_productions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_academias" Type="Self.scientific_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scientific_productions">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_ID" />
+            </Principal>
+            <Dependent Role="scientific_academias">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCAU_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_academias" Type="Self.scientific_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="scientific_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCAU_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_authors" Type="Self.scientific_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="scientific_authors">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCAU_SCPR">
+          <End Role="scientific_productions" Type="Self.scientific_productions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_authors" Type="Self.scientific_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scientific_productions">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_ID" />
+            </Principal>
+            <Dependent Role="scientific_authors">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCPR_TYSC">
+          <End Role="scientific_production_types" Type="Self.scientific_production_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_productions" Type="Self.scientific_productions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scientific_production_types">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="scientific_productions">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_USTY">
+          <End Role="user_types" Type="Self.user_types" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_types">
+              <PropertyRef Name="USER_TYPE_ID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="USER_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WOAC_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="work_academias" Type="Self.work_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="work_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WOAC_WORK">
+          <End Role="works" Type="Self.works" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="work_academias" Type="Self.work_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="works">
+              <PropertyRef Name="WORK_ID" />
+            </Principal>
+            <Dependent Role="work_academias">
+              <PropertyRef Name="WORK_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WOAU_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="work_authors" Type="Self.work_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="work_authors">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WOAU_WORK">
+          <End Role="works" Type="Self.works" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="work_authors" Type="Self.work_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="works">
+              <PropertyRef Name="WORK_ID" />
+            </Principal>
+            <Dependent Role="work_authors">
+              <PropertyRef Name="idTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WORK_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="works" Type="Self.works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="works">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WORK_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="works" Type="Self.works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="works">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WORK_WOTY">
+          <End Role="work_types" Type="Self.work_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="works" Type="Self.works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="work_types">
+              <PropertyRef Name="WORK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="works">
+              <PropertyRef Name="WORK_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="microna_2019ModelStoreContainer">
+          <EntitySet Name="academias" EntityType="Self.academias" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="article_academias" EntityType="Self.article_academias" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="article_authors" EntityType="Self.article_authors" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="article_types" EntityType="Self.article_types" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="articles" EntityType="Self.articles" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="authors" EntityType="Self.authors" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="book_academias" EntityType="Self.book_academias" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="book_authors" EntityType="Self.book_authors" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="book_types" EntityType="Self.book_types" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="books" EntityType="Self.books" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="files" EntityType="Self.files" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="project_academias" EntityType="Self.project_academias" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="project_authors" EntityType="Self.project_authors" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="projects" EntityType="Self.projects" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="recepcional_academias" EntityType="Self.recepcional_academias" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="receptional_works" EntityType="Self.receptional_works" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="scientific_academias" EntityType="Self.scientific_academias" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="scientific_authors" EntityType="Self.scientific_authors" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="scientific_production_types" EntityType="Self.scientific_production_types" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="scientific_productions" EntityType="Self.scientific_productions" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="user_types" EntityType="Self.user_types" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="work_academias" EntityType="Self.work_academias" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="work_authors" EntityType="Self.work_authors" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="work_types" EntityType="Self.work_types" Schema="microna_2019" store:Type="Tables" />
+          <EntitySet Name="works" EntityType="Self.works" Schema="microna_2019" store:Type="Tables" />
+          <AssociationSet Name="FK_ARAU_ARTI" Association="Self.FK_ARAU_ARTI">
+            <End Role="articles" EntitySet="articles" />
+            <End Role="article_authors" EntitySet="article_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARAU_AUTH" Association="Self.FK_ARAU_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="article_authors" EntitySet="article_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTGRU_ART" Association="Self.FK_ARTGRU_ART">
+            <End Role="articles" EntitySet="articles" />
+            <End Role="article_academias" EntitySet="article_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTGRU_GRUPO" Association="Self.FK_ARTGRU_GRUPO">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="article_academias" EntitySet="article_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTI_ARTY" Association="Self.FK_ARTI_ARTY">
+            <End Role="article_types" EntitySet="article_types" />
+            <End Role="articles" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTI_FILE" Association="Self.FK_ARTI_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="articles" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTI_USER" Association="Self.FK_ARTI_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="articles" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOAC_ACAD" Association="Self.FK_BOAC_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="book_academias" EntitySet="book_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOAC_BOOK" Association="Self.FK_BOAC_BOOK">
+            <End Role="books" EntitySet="books" />
+            <End Role="book_academias" EntitySet="book_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOAU_AUTH" Association="Self.FK_BOAU_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="book_authors" EntitySet="book_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOAU_BOOK" Association="Self.FK_BOAU_BOOK">
+            <End Role="books" EntitySet="books" />
+            <End Role="book_authors" EntitySet="book_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOK_FILE" Association="Self.FK_BOOK_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOK_TYBO" Association="Self.FK_BOOK_TYBO">
+            <End Role="book_types" EntitySet="book_types" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOK_USER" Association="Self.FK_BOOK_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRAC_ACAD" Association="Self.FK_PRAC_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="project_academias" EntitySet="project_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRAC_PROJ" Association="Self.FK_PRAC_PROJ">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="project_academias" EntitySet="project_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRAU_AUTH" Association="Self.FK_PRAU_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="project_authors" EntitySet="project_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRAU_PROJ" Association="Self.FK_PRAU_PROJ">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="project_authors" EntitySet="project_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJ_FILE" Association="Self.FK_PROJ_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="projects" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJ_USER" Association="Self.FK_PROJ_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="projects" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REAC_ACAD" Association="Self.FK_REAC_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="recepcional_academias" EntitySet="recepcional_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REAC_REWO" Association="Self.FK_REAC_REWO">
+            <End Role="receptional_works" EntitySet="receptional_works" />
+            <End Role="recepcional_academias" EntitySet="recepcional_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REWO_AUTH" Association="Self.FK_REWO_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="receptional_works" EntitySet="receptional_works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REWO_FILE" Association="Self.FK_REWO_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="receptional_works" EntitySet="receptional_works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REWO_USER" Association="Self.FK_REWO_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="receptional_works" EntitySet="receptional_works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCAC_SCPR" Association="Self.FK_SCAC_SCPR">
+            <End Role="scientific_productions" EntitySet="scientific_productions" />
+            <End Role="scientific_academias" EntitySet="scientific_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCAU_ACAD" Association="Self.FK_SCAU_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="scientific_academias" EntitySet="scientific_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCAU_AUTH" Association="Self.FK_SCAU_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="scientific_authors" EntitySet="scientific_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCAU_SCPR" Association="Self.FK_SCAU_SCPR">
+            <End Role="scientific_productions" EntitySet="scientific_productions" />
+            <End Role="scientific_authors" EntitySet="scientific_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCPR_TYSC" Association="Self.FK_SCPR_TYSC">
+            <End Role="scientific_production_types" EntitySet="scientific_production_types" />
+            <End Role="scientific_productions" EntitySet="scientific_productions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_USTY" Association="Self.FK_USER_USTY">
+            <End Role="user_types" EntitySet="user_types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WOAC_ACAD" Association="Self.FK_WOAC_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="work_academias" EntitySet="work_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WOAC_WORK" Association="Self.FK_WOAC_WORK">
+            <End Role="works" EntitySet="works" />
+            <End Role="work_academias" EntitySet="work_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WOAU_USER" Association="Self.FK_WOAU_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="work_authors" EntitySet="work_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WOAU_WORK" Association="Self.FK_WOAU_WORK">
+            <End Role="works" EntitySet="works" />
+            <End Role="work_authors" EntitySet="work_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WORK_FILE" Association="Self.FK_WORK_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="works" EntitySet="works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WORK_USER" Association="Self.FK_WORK_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="works" EntitySet="works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WORK_WOTY" Association="Self.FK_WORK_WOTY">
+            <End Role="work_types" EntitySet="work_types" />
+            <End Role="works" EntitySet="works" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="microna_2019Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="academias">
+          <Key>
+            <PropertyRef Name="ACADEMIA_ID" />
+          </Key>
+          <Property Name="ACADEMIA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="article_academias" Relationship="Self.FK_ARTGRU_GRUPO" FromRole="academias" ToRole="article_academias" />
+          <NavigationProperty Name="book_academias" Relationship="Self.FK_BOAC_ACAD" FromRole="academias" ToRole="book_academias" />
+          <NavigationProperty Name="project_academias" Relationship="Self.FK_PRAC_ACAD" FromRole="academias" ToRole="project_academias" />
+          <NavigationProperty Name="recepcional_academias" Relationship="Self.FK_REAC_ACAD" FromRole="academias" ToRole="recepcional_academias" />
+          <NavigationProperty Name="scientific_academias" Relationship="Self.FK_SCAU_ACAD" FromRole="academias" ToRole="scientific_academias" />
+          <NavigationProperty Name="work_academias" Relationship="Self.FK_WOAC_ACAD" FromRole="academias" ToRole="work_academias" />
+        </EntityType>
+        <EntityType Name="article_academias">
+          <Key>
+            <PropertyRef Name="ARTICLE_ACADEMIAS_ID" />
+          </Key>
+          <Property Name="ARTICLE_ACADEMIAS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ARTICLE_FK" Type="Int32" />
+          <Property Name="ACADEMIA_FK" Type="Int32" />
+          <NavigationProperty Name="academias" Relationship="Self.FK_ARTGRU_GRUPO" FromRole="article_academias" ToRole="academias" />
+          <NavigationProperty Name="articles" Relationship="Self.FK_ARTGRU_ART" FromRole="article_academias" ToRole="articles" />
+        </EntityType>
+        <EntityType Name="article_authors">
+          <Key>
+            <PropertyRef Name="ARTICLE_AUTHORS_ID" />
+          </Key>
+          <Property Name="ARTICLE_AUTHORS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ARTICLE_FK" Type="Int32" />
+          <Property Name="AUTHOR_FK" Type="Int32" />
+          <NavigationProperty Name="articles" Relationship="Self.FK_ARAU_ARTI" FromRole="article_authors" ToRole="articles" />
+          <NavigationProperty Name="authors" Relationship="Self.FK_ARAU_AUTH" FromRole="article_authors" ToRole="authors" />
+        </EntityType>
+        <EntityType Name="article_types">
+          <Key>
+            <PropertyRef Name="ARTICLE_TYPE_ID" />
+          </Key>
+          <Property Name="ARTICLE_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="articles" Relationship="Self.FK_ARTI_ARTY" FromRole="article_types" ToRole="articles" />
+        </EntityType>
+        <EntityType Name="articles">
+          <Key>
+            <PropertyRef Name="ARTICLE_ID" />
+          </Key>
+          <Property Name="ARTICLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="TITLE" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="VOLUME" Type="Int32" />
+          <Property Name="INIT_PAGE" Type="Int32" />
+          <Property Name="FINAL_PAGE" Type="Int32" />
+          <Property Name="MAGAZINE" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="ISSN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DATE" Type="DateTime" />
+          <Property Name="USER_FK" Type="Int32" />
+          <Property Name="FILE_FK" Type="Int32" />
+          <Property Name="ARTICLE_TYPE_FK" Type="Int32" />
+          <Property Name="DATABASE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DOI" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="APPROVAL_DATE" Type="DateTime" />
+          <NavigationProperty Name="article_academias" Relationship="Self.FK_ARTGRU_ART" FromRole="articles" ToRole="article_academias" />
+          <NavigationProperty Name="article_authors" Relationship="Self.FK_ARAU_ARTI" FromRole="articles" ToRole="article_authors" />
+          <NavigationProperty Name="article_types" Relationship="Self.FK_ARTI_ARTY" FromRole="articles" ToRole="article_types" />
+          <NavigationProperty Name="files" Relationship="Self.FK_ARTI_FILE" FromRole="articles" ToRole="files" />
+          <NavigationProperty Name="users" Relationship="Self.FK_ARTI_USER" FromRole="articles" ToRole="users" />
+        </EntityType>
+        <EntityType Name="authors">
+          <Key>
+            <PropertyRef Name="AUTHOR_ID" />
+          </Key>
+          <Property Name="AUTHOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="article_authors" Relationship="Self.FK_ARAU_AUTH" FromRole="authors" ToRole="article_authors" />
+          <NavigationProperty Name="book_authors" Relationship="Self.FK_BOAU_AUTH" FromRole="authors" ToRole="book_authors" />
+          <NavigationProperty Name="project_authors" Relationship="Self.FK_PRAU_AUTH" FromRole="authors" ToRole="project_authors" />
+          <NavigationProperty Name="receptional_works" Relationship="Self.FK_REWO_AUTH" FromRole="authors" ToRole="receptional_works" />
+          <NavigationProperty Name="scientific_authors" Relationship="Self.FK_SCAU_AUTH" FromRole="authors" ToRole="scientific_authors" />
+        </EntityType>
+        <EntityType Name="book_academias">
+          <Key>
+            <PropertyRef Name="BOOK_ACADEMIA_ID" />
+          </Key>
+          <Property Name="BOOK_ACADEMIA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BOOK_FK" Type="Int32" />
+          <Property Name="ACADEMIA_FK" Type="Int32" />
+          <NavigationProperty Name="academias" Relationship="Self.FK_BOAC_ACAD" FromRole="book_academias" ToRole="academias" />
+          <NavigationProperty Name="books" Relationship="Self.FK_BOAC_BOOK" FromRole="book_academias" ToRole="books" />
+        </EntityType>
+        <EntityType Name="book_authors">
+          <Key>
+            <PropertyRef Name="BOOK_AUTHOR_ID" />
+          </Key>
+          <Property Name="BOOK_AUTHOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BOOK_FK" Type="Int32" />
+          <Property Name="AUTHOR_FK" Type="Int32" />
+          <NavigationProperty Name="authors" Relationship="Self.FK_BOAU_AUTH" FromRole="book_authors" ToRole="authors" />
+          <NavigationProperty Name="books" Relationship="Self.FK_BOAU_BOOK" FromRole="book_authors" ToRole="books" />
+        </EntityType>
+        <EntityType Name="book_types">
+          <Key>
+            <PropertyRef Name="BOOK_TYPE_ID" />
+          </Key>
+          <Property Name="BOOK_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="books" Relationship="Self.FK_BOOK_TYBO" FromRole="book_types" ToRole="books" />
+        </EntityType>
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="BOOK_ID" />
+          </Key>
+          <Property Name="BOOK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="DATE" Type="DateTime" />
+          <Property Name="ISBN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="BOOK_TYPE_FK" Type="Int32" />
+          <Property Name="USER_FK" Type="Int32" />
+          <Property Name="FILE_FK" Type="Int32" />
+          <Property Name="EDITORIAL" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="book_academias" Relationship="Self.FK_BOAC_BOOK" FromRole="books" ToRole="book_academias" />
+          <NavigationProperty Name="book_authors" Relationship="Self.FK_BOAU_BOOK" FromRole="books" ToRole="book_authors" />
+          <NavigationProperty Name="book_types" Relationship="Self.FK_BOOK_TYBO" FromRole="books" ToRole="book_types" />
+          <NavigationProperty Name="files" Relationship="Self.FK_BOOK_FILE" FromRole="books" ToRole="files" />
+          <NavigationProperty Name="users" Relationship="Self.FK_BOOK_USER" FromRole="books" ToRole="users" />
+        </EntityType>
+        <EntityType Name="files">
+          <Key>
+            <PropertyRef Name="FILE_ID" />
+          </Key>
+          <Property Name="FILE_ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="articles" Relationship="Self.FK_ARTI_FILE" FromRole="files" ToRole="articles" />
+          <NavigationProperty Name="books" Relationship="Self.FK_BOOK_FILE" FromRole="files" ToRole="books" />
+          <NavigationProperty Name="projects" Relationship="Self.FK_PROJ_FILE" FromRole="files" ToRole="projects" />
+          <NavigationProperty Name="receptional_works" Relationship="Self.FK_REWO_FILE" FromRole="files" ToRole="receptional_works" />
+          <NavigationProperty Name="works" Relationship="Self.FK_WORK_FILE" FromRole="files" ToRole="works" />
+        </EntityType>
+        <EntityType Name="project_academias">
+          <Key>
+            <PropertyRef Name="PROJECT_ACADEMIA_ID" />
+          </Key>
+          <Property Name="PROJECT_ACADEMIA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROJECT_FK" Type="Int32" />
+          <Property Name="ACADEMIA_FK" Type="Int32" />
+          <NavigationProperty Name="academias" Relationship="Self.FK_PRAC_ACAD" FromRole="project_academias" ToRole="academias" />
+          <NavigationProperty Name="projects" Relationship="Self.FK_PRAC_PROJ" FromRole="project_academias" ToRole="projects" />
+        </EntityType>
+        <EntityType Name="project_authors">
+          <Key>
+            <PropertyRef Name="PROJECT_AUTHOR_ID" />
+          </Key>
+          <Property Name="PROJECT_AUTHOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROJECT_FK" Type="Int32" />
+          <Property Name="AUTHOR_FK" Type="Int32" />
+          <NavigationProperty Name="authors" Relationship="Self.FK_PRAU_AUTH" FromRole="project_authors" ToRole="authors" />
+          <NavigationProperty Name="projects" Relationship="Self.FK_PRAU_PROJ" FromRole="project_authors" ToRole="projects" />
+        </EntityType>
+        <EntityType Name="projects">
+          <Key>
+            <PropertyRef Name="PROJECT_ID" />
+          </Key>
+          <Property Name="PROJECT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="FINANCING" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="START_DATE" Type="DateTime" />
+          <Property Name="FINAL_DATE" Type="DateTime" />
+          <Property Name="USER_FK" Type="Int32" />
+          <Property Name="FILE_FK" Type="Int32" />
+          <Property Name="KEY" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="BUDGET" Type="Int32" />
+          <NavigationProperty Name="files" Relationship="Self.FK_PROJ_FILE" FromRole="projects" ToRole="files" />
+          <NavigationProperty Name="project_academias" Relationship="Self.FK_PRAC_PROJ" FromRole="projects" ToRole="project_academias" />
+          <NavigationProperty Name="project_authors" Relationship="Self.FK_PRAU_PROJ" FromRole="projects" ToRole="project_authors" />
+          <NavigationProperty Name="users" Relationship="Self.FK_PROJ_USER" FromRole="projects" ToRole="users" />
+        </EntityType>
+        <EntityType Name="recepcional_academias">
+          <Key>
+            <PropertyRef Name="RECEPCIONAL_ACADEMIA_ID" />
+          </Key>
+          <Property Name="RECEPCIONAL_ACADEMIA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RECEPCIONAL_WORK_FK" Type="Int32" />
+          <Property Name="ACADEMIA_FK" Type="Int32" />
+          <NavigationProperty Name="academias" Relationship="Self.FK_REAC_ACAD" FromRole="recepcional_academias" ToRole="academias" />
+          <NavigationProperty Name="receptional_works" Relationship="Self.FK_REAC_REWO" FromRole="recepcional_academias" ToRole="receptional_works" />
+        </EntityType>
+        <EntityType Name="receptional_works">
+          <Key>
+            <PropertyRef Name="RECEPTIONAL_WORK_ID" />
+          </Key>
+          <Property Name="RECEPTIONAL_WORK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="USER_FK" Type="Int32" />
+          <Property Name="DATE" Type="DateTime" />
+          <Property Name="FILE_FK" Type="Int32" />
+          <Property Name="DIRECTOR" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="ADVISER" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="CODIRECTION" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="AUTHOR_FK" Type="Int32" />
+          <NavigationProperty Name="authors" Relationship="Self.FK_REWO_AUTH" FromRole="receptional_works" ToRole="authors" />
+          <NavigationProperty Name="files" Relationship="Self.FK_REWO_FILE" FromRole="receptional_works" ToRole="files" />
+          <NavigationProperty Name="recepcional_academias" Relationship="Self.FK_REAC_REWO" FromRole="receptional_works" ToRole="recepcional_academias" />
+          <NavigationProperty Name="users" Relationship="Self.FK_REWO_USER" FromRole="receptional_works" ToRole="users" />
+        </EntityType>
+        <EntityType Name="scientific_academias">
+          <Key>
+            <PropertyRef Name="SCIENTIFIC_ACADEMIAS_ID" />
+          </Key>
+          <Property Name="SCIENTIFIC_ACADEMIAS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SCIENTIFIC_PRODUCTION_FK" Type="Int32" />
+          <Property Name="ACADEMIA_FK" Type="Int32" />
+          <NavigationProperty Name="academias" Relationship="Self.FK_SCAU_ACAD" FromRole="scientific_academias" ToRole="academias" />
+          <NavigationProperty Name="scientific_productions" Relationship="Self.FK_SCAC_SCPR" FromRole="scientific_academias" ToRole="scientific_productions" />
+        </EntityType>
+        <EntityType Name="scientific_authors">
+          <Key>
+            <PropertyRef Name="SCIENTIFIC_AUTHORS_ID" />
+          </Key>
+          <Property Name="SCIENTIFIC_AUTHORS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SCIENTIFIC_PRODUCTION_FK" Type="Int32" />
+          <Property Name="AUTHOR_FK" Type="Int32" />
+          <NavigationProperty Name="authors" Relationship="Self.FK_SCAU_AUTH" FromRole="scientific_authors" ToRole="authors" />
+          <NavigationProperty Name="scientific_productions" Relationship="Self.FK_SCAU_SCPR" FromRole="scientific_authors" ToRole="scientific_productions" />
+        </EntityType>
+        <EntityType Name="scientific_production_types">
+          <Key>
+            <PropertyRef Name="SCIENTIFIC_PRODUCTION_TYPE_ID" />
+          </Key>
+          <Property Name="SCIENTIFIC_PRODUCTION_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="scientific_productions" Relationship="Self.FK_SCPR_TYSC" FromRole="scientific_production_types" ToRole="scientific_productions" />
+        </EntityType>
+        <EntityType Name="scientific_productions">
+          <Key>
+            <PropertyRef Name="SCIENTIFIC_PRODUCTION_ID" />
+          </Key>
+          <Property Name="SCIENTIFIC_PRODUCTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="DATE" Type="DateTime" />
+          <Property Name="SCIENTIFIC_PRODUCTION_TYPE_FK" Type="Int32" />
+          <Property Name="ITEM_ID" Type="Int32" />
+          <NavigationProperty Name="scientific_academias" Relationship="Self.FK_SCAC_SCPR" FromRole="scientific_productions" ToRole="scientific_academias" />
+          <NavigationProperty Name="scientific_authors" Relationship="Self.FK_SCAU_SCPR" FromRole="scientific_productions" ToRole="scientific_authors" />
+          <NavigationProperty Name="scientific_production_types" Relationship="Self.FK_SCPR_TYSC" FromRole="scientific_productions" ToRole="scientific_production_types" />
+        </EntityType>
+        <EntityType Name="user_types">
+          <Key>
+            <PropertyRef Name="USER_TYPE_ID" />
+          </Key>
+          <Property Name="USER_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK_USER_USTY" FromRole="user_types" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="USER" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="USER_TYPE_FK" Type="Int32" />
+          <Property Name="LAST_NAMES" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="articles" Relationship="Self.FK_ARTI_USER" FromRole="users" ToRole="articles" />
+          <NavigationProperty Name="books" Relationship="Self.FK_BOOK_USER" FromRole="users" ToRole="books" />
+          <NavigationProperty Name="projects" Relationship="Self.FK_PROJ_USER" FromRole="users" ToRole="projects" />
+          <NavigationProperty Name="receptional_works" Relationship="Self.FK_REWO_USER" FromRole="users" ToRole="receptional_works" />
+          <NavigationProperty Name="user_types" Relationship="Self.FK_USER_USTY" FromRole="users" ToRole="user_types" />
+          <NavigationProperty Name="work_authors" Relationship="Self.FK_WOAU_USER" FromRole="users" ToRole="work_authors" />
+          <NavigationProperty Name="works" Relationship="Self.FK_WORK_USER" FromRole="users" ToRole="works" />
+        </EntityType>
+        <EntityType Name="work_academias">
+          <Key>
+            <PropertyRef Name="WORK_ACADEMIAS_ID" />
+          </Key>
+          <Property Name="WORK_ACADEMIAS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WORK_FK" Type="Int32" />
+          <Property Name="ACADEMIA_FK" Type="Int32" />
+          <NavigationProperty Name="academias" Relationship="Self.FK_WOAC_ACAD" FromRole="work_academias" ToRole="academias" />
+          <NavigationProperty Name="works" Relationship="Self.FK_WOAC_WORK" FromRole="work_academias" ToRole="works" />
+        </EntityType>
+        <EntityType Name="work_authors">
+          <Key>
+            <PropertyRef Name="idtrabajo_usuario" />
+          </Key>
+          <Property Name="idtrabajo_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTrabajo" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <NavigationProperty Name="users" Relationship="Self.FK_WOAU_USER" FromRole="work_authors" ToRole="users" />
+          <NavigationProperty Name="works" Relationship="Self.FK_WOAU_WORK" FromRole="work_authors" ToRole="works" />
+        </EntityType>
+        <EntityType Name="work_types">
+          <Key>
+            <PropertyRef Name="WORK_TYPE_ID" />
+          </Key>
+          <Property Name="WORK_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="works" Relationship="Self.FK_WORK_WOTY" FromRole="work_types" ToRole="works" />
+        </EntityType>
+        <EntityType Name="works">
+          <Key>
+            <PropertyRef Name="WORK_ID" />
+          </Key>
+          <Property Name="WORK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="DATE" Type="DateTime" />
+          <Property Name="WORK_TYPE_FK" Type="Int32" />
+          <Property Name="AUTHORS" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="PRESENTATION" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="USER_FK" Type="Int32" />
+          <Property Name="FILE_FK" Type="Int32" />
+          <NavigationProperty Name="files" Relationship="Self.FK_WORK_FILE" FromRole="works" ToRole="files" />
+          <NavigationProperty Name="users" Relationship="Self.FK_WORK_USER" FromRole="works" ToRole="users" />
+          <NavigationProperty Name="work_academias" Relationship="Self.FK_WOAC_WORK" FromRole="works" ToRole="work_academias" />
+          <NavigationProperty Name="work_authors" Relationship="Self.FK_WOAU_WORK" FromRole="works" ToRole="work_authors" />
+          <NavigationProperty Name="work_types" Relationship="Self.FK_WORK_WOTY" FromRole="works" ToRole="work_types" />
+        </EntityType>
+        <Association Name="FK_ARTGRU_GRUPO">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="article_academias" Type="Self.article_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="article_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOAC_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="book_academias" Type="Self.book_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="book_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRAC_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_academias" Type="Self.project_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="project_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REAC_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="recepcional_academias" Type="Self.recepcional_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="recepcional_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCAU_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_academias" Type="Self.scientific_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="scientific_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WOAC_ACAD">
+          <End Role="academias" Type="Self.academias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="work_academias" Type="Self.work_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="academias">
+              <PropertyRef Name="ACADEMIA_ID" />
+            </Principal>
+            <Dependent Role="work_academias">
+              <PropertyRef Name="ACADEMIA_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTGRU_ART">
+          <End Role="articles" Type="Self.articles" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="article_academias" Type="Self.article_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="articles">
+              <PropertyRef Name="ARTICLE_ID" />
+            </Principal>
+            <Dependent Role="article_academias">
+              <PropertyRef Name="ARTICLE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARAU_ARTI">
+          <End Role="articles" Type="Self.articles" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="article_authors" Type="Self.article_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="articles">
+              <PropertyRef Name="ARTICLE_ID" />
+            </Principal>
+            <Dependent Role="article_authors">
+              <PropertyRef Name="ARTICLE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARAU_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="article_authors" Type="Self.article_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="article_authors">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTI_ARTY">
+          <End Role="article_types" Type="Self.article_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="articles" Type="Self.articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="article_types">
+              <PropertyRef Name="ARTICLE_TYPE_ID" />
+            </Principal>
+            <Dependent Role="articles">
+              <PropertyRef Name="ARTICLE_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTI_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="articles" Type="Self.articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="articles">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTI_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="articles" Type="Self.articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="articles">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOAU_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="book_authors" Type="Self.book_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="book_authors">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRAU_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_authors" Type="Self.project_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="project_authors">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REWO_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1" />
+          <End Role="receptional_works" Type="Self.receptional_works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="receptional_works">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCAU_AUTH">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_authors" Type="Self.scientific_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="AUTHOR_ID" />
+            </Principal>
+            <Dependent Role="scientific_authors">
+              <PropertyRef Name="AUTHOR_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOAC_BOOK">
+          <End Role="books" Type="Self.books" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="book_academias" Type="Self.book_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="BOOK_ID" />
+            </Principal>
+            <Dependent Role="book_academias">
+              <PropertyRef Name="BOOK_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOAU_BOOK">
+          <End Role="books" Type="Self.books" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="book_authors" Type="Self.book_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="BOOK_ID" />
+            </Principal>
+            <Dependent Role="book_authors">
+              <PropertyRef Name="BOOK_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOK_TYBO">
+          <End Role="book_types" Type="Self.book_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book_types">
+              <PropertyRef Name="BOOK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="BOOK_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOK_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOOK_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJ_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="projects" Type="Self.projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="projects">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REWO_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="receptional_works" Type="Self.receptional_works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="receptional_works">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WORK_FILE">
+          <End Role="files" Type="Self.files" Multiplicity="0..1" />
+          <End Role="works" Type="Self.works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="files">
+              <PropertyRef Name="FILE_ID" />
+            </Principal>
+            <Dependent Role="works">
+              <PropertyRef Name="FILE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRAC_PROJ">
+          <End Role="projects" Type="Self.projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_academias" Type="Self.project_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projects">
+              <PropertyRef Name="PROJECT_ID" />
+            </Principal>
+            <Dependent Role="project_academias">
+              <PropertyRef Name="PROJECT_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRAU_PROJ">
+          <End Role="projects" Type="Self.projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="project_authors" Type="Self.project_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="projects">
+              <PropertyRef Name="PROJECT_ID" />
+            </Principal>
+            <Dependent Role="project_authors">
+              <PropertyRef Name="PROJECT_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJ_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="projects" Type="Self.projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="projects">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REAC_REWO">
+          <End Role="receptional_works" Type="Self.receptional_works" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="recepcional_academias" Type="Self.recepcional_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="receptional_works">
+              <PropertyRef Name="RECEPTIONAL_WORK_ID" />
+            </Principal>
+            <Dependent Role="recepcional_academias">
+              <PropertyRef Name="RECEPCIONAL_WORK_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REWO_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="receptional_works" Type="Self.receptional_works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="receptional_works">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCAC_SCPR">
+          <End Role="scientific_productions" Type="Self.scientific_productions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_academias" Type="Self.scientific_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scientific_productions">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_ID" />
+            </Principal>
+            <Dependent Role="scientific_academias">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCAU_SCPR">
+          <End Role="scientific_productions" Type="Self.scientific_productions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_authors" Type="Self.scientific_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scientific_productions">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_ID" />
+            </Principal>
+            <Dependent Role="scientific_authors">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCPR_TYSC">
+          <End Role="scientific_production_types" Type="Self.scientific_production_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="scientific_productions" Type="Self.scientific_productions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scientific_production_types">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="scientific_productions">
+              <PropertyRef Name="SCIENTIFIC_PRODUCTION_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_USTY">
+          <End Role="user_types" Type="Self.user_types" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_types">
+              <PropertyRef Name="USER_TYPE_ID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="USER_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WOAU_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="work_authors" Type="Self.work_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="work_authors">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WORK_USER">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="works" Type="Self.works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="works">
+              <PropertyRef Name="USER_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WOAC_WORK">
+          <End Role="works" Type="Self.works" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="work_academias" Type="Self.work_academias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="works">
+              <PropertyRef Name="WORK_ID" />
+            </Principal>
+            <Dependent Role="work_academias">
+              <PropertyRef Name="WORK_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WOAU_WORK">
+          <End Role="works" Type="Self.works" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="work_authors" Type="Self.work_authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="works">
+              <PropertyRef Name="WORK_ID" />
+            </Principal>
+            <Dependent Role="work_authors">
+              <PropertyRef Name="idTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WORK_WOTY">
+          <End Role="work_types" Type="Self.work_types" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="works" Type="Self.works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="work_types">
+              <PropertyRef Name="WORK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="works">
+              <PropertyRef Name="WORK_TYPE_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="micronaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="academias" EntityType="Self.academias" />
+          <EntitySet Name="article_academias" EntityType="Self.article_academias" />
+          <EntitySet Name="article_authors" EntityType="Self.article_authors" />
+          <EntitySet Name="article_types" EntityType="Self.article_types" />
+          <EntitySet Name="articles" EntityType="Self.articles" />
+          <EntitySet Name="authors" EntityType="Self.authors" />
+          <EntitySet Name="book_academias" EntityType="Self.book_academias" />
+          <EntitySet Name="book_authors" EntityType="Self.book_authors" />
+          <EntitySet Name="book_types" EntityType="Self.book_types" />
+          <EntitySet Name="books" EntityType="Self.books" />
+          <EntitySet Name="files" EntityType="Self.files" />
+          <EntitySet Name="project_academias" EntityType="Self.project_academias" />
+          <EntitySet Name="project_authors" EntityType="Self.project_authors" />
+          <EntitySet Name="projects" EntityType="Self.projects" />
+          <EntitySet Name="recepcional_academias" EntityType="Self.recepcional_academias" />
+          <EntitySet Name="receptional_works" EntityType="Self.receptional_works" />
+          <EntitySet Name="scientific_academias" EntityType="Self.scientific_academias" />
+          <EntitySet Name="scientific_authors" EntityType="Self.scientific_authors" />
+          <EntitySet Name="scientific_production_types" EntityType="Self.scientific_production_types" />
+          <EntitySet Name="scientific_productions" EntityType="Self.scientific_productions" />
+          <EntitySet Name="user_types" EntityType="Self.user_types" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="work_academias" EntityType="Self.work_academias" />
+          <EntitySet Name="work_authors" EntityType="Self.work_authors" />
+          <EntitySet Name="work_types" EntityType="Self.work_types" />
+          <EntitySet Name="works" EntityType="Self.works" />
+          <AssociationSet Name="FK_ARTGRU_GRUPO" Association="Self.FK_ARTGRU_GRUPO">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="article_academias" EntitySet="article_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOAC_ACAD" Association="Self.FK_BOAC_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="book_academias" EntitySet="book_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRAC_ACAD" Association="Self.FK_PRAC_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="project_academias" EntitySet="project_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REAC_ACAD" Association="Self.FK_REAC_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="recepcional_academias" EntitySet="recepcional_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCAU_ACAD" Association="Self.FK_SCAU_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="scientific_academias" EntitySet="scientific_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WOAC_ACAD" Association="Self.FK_WOAC_ACAD">
+            <End Role="academias" EntitySet="academias" />
+            <End Role="work_academias" EntitySet="work_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTGRU_ART" Association="Self.FK_ARTGRU_ART">
+            <End Role="articles" EntitySet="articles" />
+            <End Role="article_academias" EntitySet="article_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARAU_ARTI" Association="Self.FK_ARAU_ARTI">
+            <End Role="articles" EntitySet="articles" />
+            <End Role="article_authors" EntitySet="article_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARAU_AUTH" Association="Self.FK_ARAU_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="article_authors" EntitySet="article_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTI_ARTY" Association="Self.FK_ARTI_ARTY">
+            <End Role="article_types" EntitySet="article_types" />
+            <End Role="articles" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTI_FILE" Association="Self.FK_ARTI_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="articles" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTI_USER" Association="Self.FK_ARTI_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="articles" EntitySet="articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOAU_AUTH" Association="Self.FK_BOAU_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="book_authors" EntitySet="book_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRAU_AUTH" Association="Self.FK_PRAU_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="project_authors" EntitySet="project_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REWO_AUTH" Association="Self.FK_REWO_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="receptional_works" EntitySet="receptional_works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCAU_AUTH" Association="Self.FK_SCAU_AUTH">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="scientific_authors" EntitySet="scientific_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOAC_BOOK" Association="Self.FK_BOAC_BOOK">
+            <End Role="books" EntitySet="books" />
+            <End Role="book_academias" EntitySet="book_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOAU_BOOK" Association="Self.FK_BOAU_BOOK">
+            <End Role="books" EntitySet="books" />
+            <End Role="book_authors" EntitySet="book_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOK_TYBO" Association="Self.FK_BOOK_TYBO">
+            <End Role="book_types" EntitySet="book_types" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOK_FILE" Association="Self.FK_BOOK_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOOK_USER" Association="Self.FK_BOOK_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJ_FILE" Association="Self.FK_PROJ_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="projects" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REWO_FILE" Association="Self.FK_REWO_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="receptional_works" EntitySet="receptional_works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WORK_FILE" Association="Self.FK_WORK_FILE">
+            <End Role="files" EntitySet="files" />
+            <End Role="works" EntitySet="works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRAC_PROJ" Association="Self.FK_PRAC_PROJ">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="project_academias" EntitySet="project_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRAU_PROJ" Association="Self.FK_PRAU_PROJ">
+            <End Role="projects" EntitySet="projects" />
+            <End Role="project_authors" EntitySet="project_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJ_USER" Association="Self.FK_PROJ_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="projects" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REAC_REWO" Association="Self.FK_REAC_REWO">
+            <End Role="receptional_works" EntitySet="receptional_works" />
+            <End Role="recepcional_academias" EntitySet="recepcional_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REWO_USER" Association="Self.FK_REWO_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="receptional_works" EntitySet="receptional_works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCAC_SCPR" Association="Self.FK_SCAC_SCPR">
+            <End Role="scientific_productions" EntitySet="scientific_productions" />
+            <End Role="scientific_academias" EntitySet="scientific_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCAU_SCPR" Association="Self.FK_SCAU_SCPR">
+            <End Role="scientific_productions" EntitySet="scientific_productions" />
+            <End Role="scientific_authors" EntitySet="scientific_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCPR_TYSC" Association="Self.FK_SCPR_TYSC">
+            <End Role="scientific_production_types" EntitySet="scientific_production_types" />
+            <End Role="scientific_productions" EntitySet="scientific_productions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_USTY" Association="Self.FK_USER_USTY">
+            <End Role="user_types" EntitySet="user_types" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WOAU_USER" Association="Self.FK_WOAU_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="work_authors" EntitySet="work_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WORK_USER" Association="Self.FK_WORK_USER">
+            <End Role="users" EntitySet="users" />
+            <End Role="works" EntitySet="works" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WOAC_WORK" Association="Self.FK_WOAC_WORK">
+            <End Role="works" EntitySet="works" />
+            <End Role="work_academias" EntitySet="work_academias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WOAU_WORK" Association="Self.FK_WOAU_WORK">
+            <End Role="works" EntitySet="works" />
+            <End Role="work_authors" EntitySet="work_authors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WORK_WOTY" Association="Self.FK_WORK_WOTY">
+            <End Role="work_types" EntitySet="work_types" />
+            <End Role="works" EntitySet="works" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="microna_2019ModelStoreContainer" CdmEntityContainer="micronaEntities">
+          <EntitySetMapping Name="academias">
+            <EntityTypeMapping TypeName="microna_2019Model.academias">
+              <MappingFragment StoreEntitySet="academias">
+                <ScalarProperty Name="ACADEMIA_ID" ColumnName="ACADEMIA_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="article_academias">
+            <EntityTypeMapping TypeName="microna_2019Model.article_academias">
+              <MappingFragment StoreEntitySet="article_academias">
+                <ScalarProperty Name="ARTICLE_ACADEMIAS_ID" ColumnName="ARTICLE_ACADEMIAS_ID" />
+                <ScalarProperty Name="ARTICLE_FK" ColumnName="ARTICLE_FK" />
+                <ScalarProperty Name="ACADEMIA_FK" ColumnName="ACADEMIA_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="article_authors">
+            <EntityTypeMapping TypeName="microna_2019Model.article_authors">
+              <MappingFragment StoreEntitySet="article_authors">
+                <ScalarProperty Name="ARTICLE_AUTHORS_ID" ColumnName="ARTICLE_AUTHORS_ID" />
+                <ScalarProperty Name="ARTICLE_FK" ColumnName="ARTICLE_FK" />
+                <ScalarProperty Name="AUTHOR_FK" ColumnName="AUTHOR_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="article_types">
+            <EntityTypeMapping TypeName="microna_2019Model.article_types">
+              <MappingFragment StoreEntitySet="article_types">
+                <ScalarProperty Name="ARTICLE_TYPE_ID" ColumnName="ARTICLE_TYPE_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="articles">
+            <EntityTypeMapping TypeName="microna_2019Model.articles">
+              <MappingFragment StoreEntitySet="articles">
+                <ScalarProperty Name="ARTICLE_ID" ColumnName="ARTICLE_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="VOLUME" ColumnName="VOLUME" />
+                <ScalarProperty Name="INIT_PAGE" ColumnName="INIT_PAGE" />
+                <ScalarProperty Name="FINAL_PAGE" ColumnName="FINAL_PAGE" />
+                <ScalarProperty Name="MAGAZINE" ColumnName="MAGAZINE" />
+                <ScalarProperty Name="ISSN" ColumnName="ISSN" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="USER_FK" ColumnName="USER_FK" />
+                <ScalarProperty Name="FILE_FK" ColumnName="FILE_FK" />
+                <ScalarProperty Name="ARTICLE_TYPE_FK" ColumnName="ARTICLE_TYPE_FK" />
+                <ScalarProperty Name="DATABASE" ColumnName="DATABASE" />
+                <ScalarProperty Name="DOI" ColumnName="DOI" />
+                <ScalarProperty Name="APPROVAL_DATE" ColumnName="APPROVAL_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="authors">
+            <EntityTypeMapping TypeName="microna_2019Model.authors">
+              <MappingFragment StoreEntitySet="authors">
+                <ScalarProperty Name="AUTHOR_ID" ColumnName="AUTHOR_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="book_academias">
+            <EntityTypeMapping TypeName="microna_2019Model.book_academias">
+              <MappingFragment StoreEntitySet="book_academias">
+                <ScalarProperty Name="BOOK_ACADEMIA_ID" ColumnName="BOOK_ACADEMIA_ID" />
+                <ScalarProperty Name="BOOK_FK" ColumnName="BOOK_FK" />
+                <ScalarProperty Name="ACADEMIA_FK" ColumnName="ACADEMIA_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="book_authors">
+            <EntityTypeMapping TypeName="microna_2019Model.book_authors">
+              <MappingFragment StoreEntitySet="book_authors">
+                <ScalarProperty Name="BOOK_AUTHOR_ID" ColumnName="BOOK_AUTHOR_ID" />
+                <ScalarProperty Name="BOOK_FK" ColumnName="BOOK_FK" />
+                <ScalarProperty Name="AUTHOR_FK" ColumnName="AUTHOR_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="book_types">
+            <EntityTypeMapping TypeName="microna_2019Model.book_types">
+              <MappingFragment StoreEntitySet="book_types">
+                <ScalarProperty Name="BOOK_TYPE_ID" ColumnName="BOOK_TYPE_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="microna_2019Model.books">
+              <MappingFragment StoreEntitySet="books">
+                <ScalarProperty Name="BOOK_ID" ColumnName="BOOK_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="BOOK_TYPE_FK" ColumnName="BOOK_TYPE_FK" />
+                <ScalarProperty Name="USER_FK" ColumnName="USER_FK" />
+                <ScalarProperty Name="FILE_FK" ColumnName="FILE_FK" />
+                <ScalarProperty Name="EDITORIAL" ColumnName="EDITORIAL" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="files">
+            <EntityTypeMapping TypeName="microna_2019Model.files">
+              <MappingFragment StoreEntitySet="files">
+                <ScalarProperty Name="FILE_ID" ColumnName="FILE_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project_academias">
+            <EntityTypeMapping TypeName="microna_2019Model.project_academias">
+              <MappingFragment StoreEntitySet="project_academias">
+                <ScalarProperty Name="PROJECT_ACADEMIA_ID" ColumnName="PROJECT_ACADEMIA_ID" />
+                <ScalarProperty Name="PROJECT_FK" ColumnName="PROJECT_FK" />
+                <ScalarProperty Name="ACADEMIA_FK" ColumnName="ACADEMIA_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project_authors">
+            <EntityTypeMapping TypeName="microna_2019Model.project_authors">
+              <MappingFragment StoreEntitySet="project_authors">
+                <ScalarProperty Name="PROJECT_AUTHOR_ID" ColumnName="PROJECT_AUTHOR_ID" />
+                <ScalarProperty Name="PROJECT_FK" ColumnName="PROJECT_FK" />
+                <ScalarProperty Name="AUTHOR_FK" ColumnName="AUTHOR_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projects">
+            <EntityTypeMapping TypeName="microna_2019Model.projects">
+              <MappingFragment StoreEntitySet="projects">
+                <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="FINANCING" ColumnName="FINANCING" />
+                <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                <ScalarProperty Name="FINAL_DATE" ColumnName="FINAL_DATE" />
+                <ScalarProperty Name="USER_FK" ColumnName="USER_FK" />
+                <ScalarProperty Name="FILE_FK" ColumnName="FILE_FK" />
+                <ScalarProperty Name="KEY" ColumnName="KEY" />
+                <ScalarProperty Name="BUDGET" ColumnName="BUDGET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recepcional_academias">
+            <EntityTypeMapping TypeName="microna_2019Model.recepcional_academias">
+              <MappingFragment StoreEntitySet="recepcional_academias">
+                <ScalarProperty Name="RECEPCIONAL_ACADEMIA_ID" ColumnName="RECEPCIONAL_ACADEMIA_ID" />
+                <ScalarProperty Name="RECEPCIONAL_WORK_FK" ColumnName="RECEPCIONAL_WORK_FK" />
+                <ScalarProperty Name="ACADEMIA_FK" ColumnName="ACADEMIA_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="receptional_works">
+            <EntityTypeMapping TypeName="microna_2019Model.receptional_works">
+              <MappingFragment StoreEntitySet="receptional_works">
+                <ScalarProperty Name="RECEPTIONAL_WORK_ID" ColumnName="RECEPTIONAL_WORK_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="USER_FK" ColumnName="USER_FK" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="FILE_FK" ColumnName="FILE_FK" />
+                <ScalarProperty Name="DIRECTOR" ColumnName="DIRECTOR" />
+                <ScalarProperty Name="ADVISER" ColumnName="ADVISER" />
+                <ScalarProperty Name="CODIRECTION" ColumnName="CODIRECTION" />
+                <ScalarProperty Name="AUTHOR_FK" ColumnName="AUTHOR_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scientific_academias">
+            <EntityTypeMapping TypeName="microna_2019Model.scientific_academias">
+              <MappingFragment StoreEntitySet="scientific_academias">
+                <ScalarProperty Name="SCIENTIFIC_ACADEMIAS_ID" ColumnName="SCIENTIFIC_ACADEMIAS_ID" />
+                <ScalarProperty Name="SCIENTIFIC_PRODUCTION_FK" ColumnName="SCIENTIFIC_PRODUCTION_FK" />
+                <ScalarProperty Name="ACADEMIA_FK" ColumnName="ACADEMIA_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scientific_authors">
+            <EntityTypeMapping TypeName="microna_2019Model.scientific_authors">
+              <MappingFragment StoreEntitySet="scientific_authors">
+                <ScalarProperty Name="SCIENTIFIC_AUTHORS_ID" ColumnName="SCIENTIFIC_AUTHORS_ID" />
+                <ScalarProperty Name="SCIENTIFIC_PRODUCTION_FK" ColumnName="SCIENTIFIC_PRODUCTION_FK" />
+                <ScalarProperty Name="AUTHOR_FK" ColumnName="AUTHOR_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scientific_production_types">
+            <EntityTypeMapping TypeName="microna_2019Model.scientific_production_types">
+              <MappingFragment StoreEntitySet="scientific_production_types">
+                <ScalarProperty Name="SCIENTIFIC_PRODUCTION_TYPE_ID" ColumnName="SCIENTIFIC_PRODUCTION_TYPE_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scientific_productions">
+            <EntityTypeMapping TypeName="microna_2019Model.scientific_productions">
+              <MappingFragment StoreEntitySet="scientific_productions">
+                <ScalarProperty Name="SCIENTIFIC_PRODUCTION_ID" ColumnName="SCIENTIFIC_PRODUCTION_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="SCIENTIFIC_PRODUCTION_TYPE_FK" ColumnName="SCIENTIFIC_PRODUCTION_TYPE_FK" />
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_types">
+            <EntityTypeMapping TypeName="microna_2019Model.user_types">
+              <MappingFragment StoreEntitySet="user_types">
+                <ScalarProperty Name="USER_TYPE_ID" ColumnName="USER_TYPE_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="microna_2019Model.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="USER" ColumnName="USER" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="USER_TYPE_FK" ColumnName="USER_TYPE_FK" />
+                <ScalarProperty Name="LAST_NAMES" ColumnName="LAST_NAMES" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="work_academias">
+            <EntityTypeMapping TypeName="microna_2019Model.work_academias">
+              <MappingFragment StoreEntitySet="work_academias">
+                <ScalarProperty Name="WORK_ACADEMIAS_ID" ColumnName="WORK_ACADEMIAS_ID" />
+                <ScalarProperty Name="WORK_FK" ColumnName="WORK_FK" />
+                <ScalarProperty Name="ACADEMIA_FK" ColumnName="ACADEMIA_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="work_authors">
+            <EntityTypeMapping TypeName="microna_2019Model.work_authors">
+              <MappingFragment StoreEntitySet="work_authors">
+                <ScalarProperty Name="idtrabajo_usuario" ColumnName="idtrabajo_usuario" />
+                <ScalarProperty Name="idTrabajo" ColumnName="idTrabajo" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="work_types">
+            <EntityTypeMapping TypeName="microna_2019Model.work_types">
+              <MappingFragment StoreEntitySet="work_types">
+                <ScalarProperty Name="WORK_TYPE_ID" ColumnName="WORK_TYPE_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="works">
+            <EntityTypeMapping TypeName="microna_2019Model.works">
+              <MappingFragment StoreEntitySet="works">
+                <ScalarProperty Name="WORK_ID" ColumnName="WORK_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="WORK_TYPE_FK" ColumnName="WORK_TYPE_FK" />
+                <ScalarProperty Name="AUTHORS" ColumnName="AUTHORS" />
+                <ScalarProperty Name="PRESENTATION" ColumnName="PRESENTATION" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="USER_FK" ColumnName="USER_FK" />
+                <ScalarProperty Name="FILE_FK" ColumnName="FILE_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

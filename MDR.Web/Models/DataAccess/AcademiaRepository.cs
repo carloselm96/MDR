@@ -56,7 +56,24 @@ namespace MDR.Web.Models.DataAccess
             try
             {
                 micronaEntities db = new micronaEntities();
-                db.academias.Remove(GetAcademiaById(id));
+                var aux = db.academias.Where(x => x.ACADEMIA_ID == id).FirstOrDefault();
+                db.academias.Remove(aux);
+                return db.SaveChanges() != 0 ? true : false;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public static bool UpdateAcademia(academias academia)
+        {
+            try
+            {
+                micronaEntities db = new micronaEntities();
+                var aux = db.academias.Where(x => x.ACADEMIA_ID == academia.ACADEMIA_ID).FirstOrDefault();
+                aux.NAME = academia.NAME;                
                 return db.SaveChanges() != 0 ? true : false;
             }
             catch (Exception e)

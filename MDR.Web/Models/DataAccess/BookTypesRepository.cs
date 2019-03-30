@@ -36,7 +36,7 @@ namespace MDR.Web.Models.DataAccess
             }
         }
 
-        public static bool CreateAcademia(book_types book_types)
+        public static bool CreateBookType(book_types book_types)
         {
             try
             {
@@ -51,12 +51,13 @@ namespace MDR.Web.Models.DataAccess
             }
         }
 
-        public static bool DeleteAcademia(int id)
+        public static bool DeleteBookType(int id)
         {
             try
             {
                 micronaEntities db = new micronaEntities();
-                db.book_types.Remove(GetBookyTypeById(id));
+                var aux = db.book_types.Where(x => x.BOOK_TYPE_ID == id).FirstOrDefault();
+                db.book_types.Remove(aux);
                 return db.SaveChanges() != 0 ? true : false;
             }
             catch (Exception e)
@@ -65,5 +66,22 @@ namespace MDR.Web.Models.DataAccess
                 throw;
             }
         }
+
+        public static bool UpdateBookType(book_types book_Types)
+        {
+            try
+            {
+                micronaEntities db = new micronaEntities();
+                var aux = db.book_types.Where(x => x.BOOK_TYPE_ID == book_Types.BOOK_TYPE_ID).FirstOrDefault();
+                aux.NAME = book_Types.NAME;
+                return db.SaveChanges() != 0 ? true : false;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+        
     }
 }
